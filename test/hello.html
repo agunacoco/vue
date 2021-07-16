@@ -3,6 +3,7 @@
 
 <head>
     <title>Agunacoco</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
 <body>
@@ -109,7 +110,35 @@
         <input v-model.lazy='lazytest.value2'>
         <p>{{ lazytest.value2 }}</p>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <!-- v-model.number  -->
+        <!-- 문자형을 사용자 입력이 숫자로 형변환 되도록 설정. -->
+        <input v-model.number="user.age">
+        <!-- 숫자가 아닌 다른 값을 넣으면 값을 인지할 수 없다. -->
+        <p>>{{ user.age }}</p>
+
+        <!-- v-model.trim -->
+        <!-- 입력을 trim(문자열 양 끝의 공백 제거.) -->
+        <input v-model.trim='message'>
+        <p>{{ message }}</p>
+
+        <!-- computed -->
+        <!-- computed property -->
+        <p>{{ user_info }}</p>
+        <input v-model.number='user.age'>
+        <p>{{ age_message }}</p>
+
+        <!-- Component -->
+        <!-- 반복적으로 사용 가능 -->
+        <agunacoco name="kunahyun"></agunacoco>
+        <agunacoco name="jang"></agunacoco>
+        <aguna></aguna>
+
+        <h3>{{ totalCount }}</h3>
+        <add @event-add="updateTotal"></add><br>
+        <add @event-add="updateTotal"></add><br>
+        <add @event-add="updateTotal"></add><br>
+
+
         <script src="./hello.js"></script>
     </div>
 </body>

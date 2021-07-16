@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agunacoco</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- root라는 id를 입력한 div 태그 안에 있는 것들은 이제 html 영역이아닌 Vue에서 관리한다.   -->
+        <!-- 데이터만 관리해주면 화면이 알아서 바뀐다. -->
+        <div v-if="liked">장재현 좋아요</div>
+        <!-- v-가 쓰인 ""안에는 자바스크립트 코드를 쓸 수 있다. -->
+        <button v-else v-on:click="onClickButton()">사랑</button>
+    </div>
+
+</body>
+<script>
+    let app = new Vue({
+        el: '#root',
+        data: {
+            liked: false,
+        },
+        methods: {
+            onClickButton() {
+                this.liked = true;
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agunacoco</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>글쓰기</h2>
+
+        <input type="text" v-model="userId">
+        <textarea type="text" v-model="content"></textarea>
+        <br>
+        <button @click="addContent">등록</button>
+        <ul>
+            <li v-for="msg in message">
+                <p>{{ msg.userId }}: {{ msg.content }}</p>
+            </li>
+        </ul>
+        <text></text>
+
+
+        <script src="./test.js"></script>
+    </div>
+</body>
+
+</html>
