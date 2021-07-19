@@ -1,6 +1,6 @@
 // Component는 new Vue()앞에 정의.
 Vue.component('agunacoco', { // component 전역 등록
-    props: ['name'], //매개변수 역할, 데이터를 받아온다. 
+    props: ['name'], //매개변수 역할, 데이터를 받아온다. 상위 컴포넌트의 데이터를 하위 컴포넌트로 전달.
     template: '<p>{{message}}</p>', //필수 요소. 최상위 태그는 하나만 있어야한다. 그 안에는 여러 개 있어도 상관없다.
     data: function () { //객체가 아닌 함수인 이유는 html에서 호출될 때마다 돌아가야하니깐 함수로 표현.
         return { message: 'hello!, ' + this.name }
