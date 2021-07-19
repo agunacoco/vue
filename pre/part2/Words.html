@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agunacoco</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- component는 공통된 부분이지만 데이터가 서로 다르다. -->
+        <!-- 중복을 제거할 수 있다. -->
+        <Wordrelay start="초밥"></Wordrelay>
+        <Wordrelay start="딸기"></Wordrelay>
+        <Wordrelay start="김치"></Wordrelay>
+    </div>
+
+</body>
+<script> // 스크립트가 여러개 있을 때의 복잡함을 웹팩이 없애준다. 
+    Vue.component('Wordrelay', { // Vue.componment라는 메서드.
+        props: ['start'],
+        template: `
+        <div>
+            <p>끝말잇기</p>
+            <p>{{ word }}</p>
+            <input type="text" v-model="value">
+            <button @click="onClickButton">입력!</button>
+            <p>{{ result }}</p>
+        </div>
+        `,
+        data() {
+            return {
+                word: this.start,
+                value: '',
+                result: '',
+            };
+        },
+        methods: {
+            onClickButton() {
+                if (this.word[this.word.length - 1] === this.value[0]) {
+                    this.result = "굿!";
+                    this.word = this.value;
+                    this.value = null;
+
+                } else {
+                    this.result = "땡!";
+                    this.value = null;
+                }
+            }
+        }
+    });
+
+    let app = new Vue({ // Vue인스턴스 
+        el: "#root",
+        data: {
+        }
+    });
+</script>
+
+</html>
