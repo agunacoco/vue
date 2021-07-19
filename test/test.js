@@ -8,12 +8,17 @@ Vue.component('agunacoco', {
                     <textarea type="text" v-model="content"></textarea>
                     <br>
                     <button @click="addContent">등록</button>
+                    <ul>
+                        <li v-for="msg in message">
+                            <p>{{ msg.userId }}: {{ msg.content }}</p>
+                        </li>
+                    </ul>
                 </div>`,
     data() { //객체가 아닌 함수인 이유는 html에서 호출될 때마다 돌아가야하니깐 함수로 표현.
         return {
-            userId: null,
-            content: null,
-            message: []
+            userId: "",
+            content: "",
+            message: [],
         }
     },
     methods: {
