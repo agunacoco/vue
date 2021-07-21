@@ -1,7 +1,7 @@
 // 바벨은 최신 문법 즉, 자바스크립트에서 지원하지 않을 때만 사용하는 것이다.
 // 자바스크립트가 아닌 .vue로 끝나는 파일은 vue-loader가 알아서 자바스크립트로 바꿔준다.
 
-// 노드에서는 import랑 require을 안쓰고 module.exports랑 require를 쓴다.
+// 노드에서는 import랑 export을 안쓰고 module.exports랑 require를 쓴다.
 
 const {
     VueLoaderPlugin
