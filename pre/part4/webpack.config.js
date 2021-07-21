@@ -24,6 +24,12 @@ module.exports = { // 노드의 모듈을 만들었다.
         rules: [{ // 합칠 때 어떻게 합칠지에 대한 기본 룰. 웹팩은 자스만 처리하는데 자스가 아닌 것이 있을 때 처리할 방법.
             test: /\.vue$/, // .vue로 끝나는 파일 
             use: 'vue-loader' // 자스가 아닌 vue 파일을 vue.loader가 처리하도록 설정.
+        },
+        {
+            test: /\.css$/, // .css로 끝나는 파일 
+            use: ['vue-style-loader',
+                'css-loader',
+            ]
         }],
     },
     plugins: [
