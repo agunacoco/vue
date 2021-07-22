@@ -9,32 +9,63 @@
     </div>
     <div>
       <!-- 평균 시간, 리셋 버튼 -->
-      <div>평균 시간: {{}}</div>
-      <button @click="onReset">리셋</button>
+      <!-- v-show는 if와 같이 true면 실행, false면 실행하지 않는다.  -->
+      <!-- 그렇다면 if와 다른 점은 v-show는 태그를 display해서 보이지 않게 한거고 if는 그냥 태그자체를 보이지 않게 했다 -->
+      <div v-show="result.length">
+        <!-- result 배열에 저장된 값을 다 더할때는 reduce를 사용한다. 평균 시간 구하기 -->
+        평균 시간: {{ average }}ms
+        <button @click="onReset">리셋</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+let startTime = 0; // 화면이 보여진 시간
+let endTime = 0; // 바뀐 화면을 클릭한 시간
+let timeout = null;
+
 // export default에 담긴 객체들을 main.js에서 import해서 가져온다.
 export default {
   data() {
     return {
-      result: [],
+      result: [], // 반응 속도가 들어간다.
       state: "waiting",
       message: "클릭해서 시작하세요.",
     };
   },
   methods: {
-    onReset() {},
+    onReset() {
+      this.result = [];
+    },
     onClickScreen() {
       if (this.state === "waiting") {
         this.state = "ready";
+        this.message = "초록색이 되면 클릭하세요.";
+        timeout = setTimeout(() => {
+          this.state = "now";
+          this.message = "지금 클릭하세요";
+          startTime = new Date(); // 화면이 바뀐 시작 시간.
+        }, Math.floor(Math.random() * 1000) + 2000); // 2~3초
       } else if (this.state === "ready") {
+        // 화면이 빨간색인데 눌렀을 때
+
+        clearTimeout(timeout); // 성급하게 눌렀을 때는 기존의 timeout 값을 삭제해준다.
         this.state = "now";
+        this.message = "너무 성급하시군요! 초록색이 된 후에 클릭하세요.";
       } else if (this.state === "now") {
+        endTime = new Date(); // 초록색 버튼을 누른 현재 시간.
         this.state = "waiting";
+        this.message = "클릭해서 시작하세요";
+        this.result.push(endTime - startTime); // 반응 속도
       }
+    },
+  },
+  computed: {
+    // 데이터를 계산해야하는 부분이 있다면 computed에 넣는 것이 좋다.
+    // 캐싱이 된다
+    average() {
+      return this.result.reduce((a, c) => a + c, 0) / this.result.length;
     },
   },
 };

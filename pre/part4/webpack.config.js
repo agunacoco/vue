@@ -38,5 +38,6 @@ module.exports = { // 노드의 모듈을 만들었다.
     output: {
         filename: 'app.js', // entry의 app 
         path: path.join(__dirname, 'dist'), // 현재 폴더 안에 들어있는 파일.(폴더 경로), dist 폴더 안에 app 파일이 생긴다.
+        publicPath: '/dist',
     }
 };
