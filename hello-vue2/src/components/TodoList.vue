@@ -30,12 +30,13 @@ export default {
   },
   data() {
     return {
-      newTodoText: "",
+      newTodoText: "", // input에 입력한 값.
       todos: [],
     };
   },
   methods: {
     addTodo() {
+      //trim（)은 양끝의 공백을 제거해준다.
       const trimmedText = this.newTodoText.trim();
       if (trimmedText) {
         this.todos.push({
