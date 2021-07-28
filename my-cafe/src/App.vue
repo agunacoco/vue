@@ -2,7 +2,6 @@
   <div id="app">
     <ul>
       <!-- 가상의 링크를 건다. 그냥 link가 아닌 route-link. -->
-
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/menus">Menus</router-link></li>
       <li><router-link to="/events">Events</router-link></li>

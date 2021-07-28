@@ -18,6 +18,7 @@ export default {
         { id: 1, name: "아이스 아메리카노", price: 1000 },
         { id: 2, name: "블루레몬에이드", price: 3000 },
         { id: 3, name: "제주유기농말차프라프치노", price: 6000 },
+        { id: 4, name: "바닐라 아이스크림", price: 3000 },
       ],
     };
   },
