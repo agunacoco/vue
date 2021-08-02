@@ -16,7 +16,7 @@ Vue.component('add', {
         add() {
             this.count += 1
             //this.$parent.$data.totalCount += 1
-            this.$emit('event-add', 1);  //
+            this.$emit('event-add', 2);  //
         }
     }
 });
