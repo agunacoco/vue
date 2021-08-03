@@ -1,4 +1,4 @@
-Vue.component('product', { // 전역 컴포넌트
+Vue.component('product', { // 전역 컴포넌트, 자식 컴포넌트
     props: [], // 하위 컴포넌트의 템플릿에서 상위 데이터를 직접 참조 할 수 없기때문에 props 옵션을 사용해 하위 컴포넌트로 전달.
     template: `
     <div class="product">
@@ -71,7 +71,7 @@ Vue.component('product', { // 전역 컴포넌트
     },
 });
 
-let app = new Vue({  // vue instance 
+let app = new Vue({  // vue instance, 부모 
     el: '#app',
     data: {
         cart: [],
