@@ -1,10 +1,10 @@
 const http = require('http')  // 노드를 설치하면 자동으로 http라는 라이브러리가 제공. 
 // require은 http라는 라이브러리를 
 
-const server = http.createServer((req, res) => {
-    res.end('hello')
+const server = http.createServer((req, res) => { // 웹 서버를 생성.
+    res.end('hello') // 응답데이터 요청.
 })
-server.listen(3000) // 3000번 포트가 켜진다. 
+server.listen(3000) // 웹서버를 3000번 포트로 실행. 
 
 
 // HTTP 포로토콜

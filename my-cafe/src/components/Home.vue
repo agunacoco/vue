@@ -2,16 +2,26 @@
   <div id="app">
     <!-- script에서는 전역변수를 this를 사용하지만 tmeplate에서는 this를 생략하므로 $를 사용한다 -->
     <h1>Welcome {{ userId }}</h1>
-    <input v-model="newId" type="text" /><button @click="saveUserId">
-      Save
-    </button>
-    <button @click="updateReviews">Update</button>
+    <v-text-field :rules="rules" v-model="newId" type="text" />
+    <v-btn @click="saveUserId" elevation="2"> Save </v-btn>
+    <v-btn @click="updateReviews" elevation="2">Update</v-btn>
     <h1>{{ reviewCount }}</h1>
-    <ul>
-      <li v-for="r in reviews" :key="r.id">
-        <p>{{ r.body }}</p>
-      </li>
-    </ul>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in reviews" :key="item.id">
+            <td>{{ item.email }}</td>
+            <td>{{ item.body }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
   </div>
 </template>
 <script>

@@ -25,21 +25,16 @@
 
       <v-btn to="/" text>
         <v-icon>mdi-home</v-icon>
-        <span class="mr-2">home</span>
+        <span class="mr-2">Main</span>
       </v-btn>
-      <v-btn to="/menus" text><span class="mr-2">Menus</span></v-btn>
-      <v-btn to="/events" text><span class="mr-2">Events</span></v-btn>
-      <v-btn to="/reviews" text><span class="mr-2">reviews</span></v-btn>
+      <v-btn to="/books/bookId" text>
+        <span class="mr-2">book</span>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <v-row>
-          <v-col>
-            <router-view></router-view>
-          </v-col>
-        </v-row>
-      </v-container>
+      <!-- 현재 라우터가 제공하는 컴포넌트가 렌더링된다. -->
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -47,6 +42,7 @@
 <script>
 export default {
   name: "App",
+
   data: () => ({
     //
   }),
