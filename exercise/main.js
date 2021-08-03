@@ -52,7 +52,7 @@ Vue.component('product', { // 전역 컴포넌트, 자식 컴포넌트
             // 컴포넌트 통신
             // 부모에서 자식으로 데이터를 전달하기 위해서는 props를 사용하지만 자식이 부모에게 데이터를 전달하기 위해서는 event(emit)를 발생시킨다.
             // 왼쪽 인자: 보낼 신호, 오른쪽 신호: 실제 보내는 값
-            this.$emit('add-to-cart', 1);
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
         updateProduct(index) {
             this.selectedVariant = index;
