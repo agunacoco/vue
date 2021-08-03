@@ -1,4 +1,4 @@
-Vue.component('product', {
+Vue.component('product', { // 자식
     template: `
     <div class="product">
         <div class="product-image">
@@ -32,12 +32,12 @@ Vue.component('product', {
                     variantId: 2235, variantColor: 'blue', variantImage: './assets/socks_blue.jpg', variantQuantity: 0
                 }
             ],
-            cart: 0,
+
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1;
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
         updateProduct(index) {
             this.selectedVariant = index;
@@ -56,8 +56,14 @@ Vue.component('product', {
     }
 })
 
-let app = new Vue({
+let app = new Vue({ // 부모
     el: '#app',
     data: {
+        cart: [],
     },
+    methods: {
+        addToCart(id) {
+            this.cart.push(id);
+        },
+    }
 })
