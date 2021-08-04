@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// /api/books로 booksRouter를 불러온다.
 app.use('/api/books', booksRouter);
 
 module.exports = app;

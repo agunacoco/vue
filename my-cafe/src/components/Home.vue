@@ -44,6 +44,8 @@ export default {
     ...mapMutations(["updateUserId"]),
     ...mapActions("reviews", ["getReviews"]),
     saveUserId() {
+      // mutations은 commit을 해서 함수을 실해시킨다. commit의 첫번째 인자는 mutations의 함수 이름, 두번째 인자는 전달할 값.
+      //this.$store.commit("updateUserId", this.newId);
       this.updateUserId(this.newId);
     },
     updateReviews() {

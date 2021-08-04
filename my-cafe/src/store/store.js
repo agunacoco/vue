@@ -22,28 +22,36 @@ export default new Vuex.Store({
         reviews: []
     },
     mutations: { // 단순 변경되는 값은 mutations에 저장, state 자체를 변경하는 메소드.
+        // mutations의 함수는 동기적이다.(특정코드를 완료한 이후 아래줄의 코드 수행)
+        //mutations은 직접 호출X, commit을 이용해 변경. 
+        // 함수의 첫번째 인자는 state, 두번째 인자는 commit으로 전달받는 값.
+        // methods에 등록.
         updateUserId(state, newId) {
             state.userId = newId;
         },
         updateReviews(state, reviews) {
-            state.reviews = reviews
+            state.review = reviews
         }
     },
     actions: {
+        // 비동기적 로직을 정의.
+        // dispatch로 호출.
         getReviews({ commit }) {
             axios.get('/api/comments')
                 .then(response => {
                     commit('updateReviews', response.data)
+
                 })
                 .catch(err => {
                     console.log(err)
                 })
         }
+
     },
     getters: { // state를 computed와 같이 이용할 수 있게 도움주는 함수.
         // 여러 곳에서 반복해서 사용해야한다면 코드를 한곳으로 모을 필요성이 있을 때 이 메소드를 이용하면 좋다.
         // state는 root state에 접근이 가능.
-        reviewCount(state /* , getters */) {
+        reviewCount(state, /*getters*/) {
             return state.reviews.length
         }
     }
