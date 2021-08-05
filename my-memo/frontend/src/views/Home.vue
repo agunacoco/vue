@@ -7,12 +7,23 @@
 </template>
 
 <script>
+import memoApi from "../apis/memos";
+
 export default {
   name: "Home",
   data() {
     return {
-      requiresAuth: false,
+      memos: [],
+      // requiresAuth: false,
     };
+  },
+  mounted() {
+    memoApi
+      .getMemos()
+      .then((res) => {
+        this.memos = res.data;
+      })
+      .catch(() => {});
   },
 
   // // 컴포넌트 가드
