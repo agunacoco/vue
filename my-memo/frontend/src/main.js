@@ -10,6 +10,7 @@ new Vue({
   router,
   vuetify,
   store,
+  // beforeCreate는 가장 처음으로 사용할 수 있는 함수.
   beforeCreate() {
     this.$store.commit('getAccessToken')
   },
