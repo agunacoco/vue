@@ -8,6 +8,16 @@ import Signup from '../views/Signup.vue'
 
 Vue.use(VueRouter)
 
+const auth = (to, from, next) => {
+  if (to.matched.some((record) => record.meta.requireAuth)) {
+    if (localStorage.getItem('accessToken') == null) {
+      alert('Signin please')
+      next('/signin')
+    }
+  }
+  next()
+}
+
 const routes = [
   // 각 경로객체(?)를 레코드라고 한다.
   {
