@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { response } from 'express';
 
 // axios 인스턴스를 생성.
 const instance = axios.create({
@@ -14,6 +15,7 @@ instance.interceptors.request.use(
             config.headers.Authorization = token
         else
             console.log('No token')
+        config.headers['Content-Type'] = 'multipart/form-data';
         return config;
     },
     (error) => { // 오류 요청을 보내기전 수행할 일

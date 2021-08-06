@@ -76,29 +76,30 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-// 기존의 컴포넌트가 제거된 후 새로운 네비게이션이 시작될때 이 훅을 호출.
-// router.beforeEach()를 호출하고 나면 모든 라우팅이 대기 상태가 된다. 
-// 원래 url이 변경되고 나면 해당 url에 따라 화면이 자연스럽게 전환되어야 하는데 전역 가드를 설정했기 때문에 화면이 전환되지 않는다.
-// 해당 url로 라우팅하기 위해서는 next를 호출 next()가 호출되지 전까지 화면이 전환되지 않는다.
-// 라우팅은 어떤 네트워크 안에서 통신 데이터를 보낼 때 최적의 경로를 선택하는 과정.
-router.beforeEach((to, from, next) => {
-  // to: 이동할 url
-  // from: 현재 url
-  // next: to에서 지정한 url로 이동하기 위해 꼭 호출해야 하는 함수
+router.beforeEach(auth);
+// // 기존의 컴포넌트가 제거된 후 새로운 네비게이션이 시작될때 이 훅을 호출.
+// // router.beforeEach()를 호출하고 나면 모든 라우팅이 대기 상태가 된다. 
+// // 원래 url이 변경되고 나면 해당 url에 따라 화면이 자연스럽게 전환되어야 하는데 전역 가드를 설정했기 때문에 화면이 전환되지 않는다.
+// // 해당 url로 라우팅하기 위해서는 next를 호출 next()가 호출되지 전까지 화면이 전환되지 않는다.
+// // 라우팅은 어떤 네트워크 안에서 통신 데이터를 보낼 때 최적의 경로를 선택하는 과정.
+// router.beforeEach((to, from, next) => {
+//   // to: 이동할 url
+//   // from: 현재 url
+//   // next: to에서 지정한 url로 이동하기 위해 꼭 호출해야 하는 함수
 
-  // 콜백함수에 사용자 인증 여부를 체크하는 로직을 추가
-  // to: 이동할 url에 해당하는 라우팅 객체
-  // to.matched.some((recode)가 각 레코드를 검사한다. 검사해서 meta.requireAuth가 있는지 확인한다. 
-  // 인증 값이 필요한 페이지는 라우팅을 막는다.
-  // .some()은 자바스크립트 내장 API다. 지정된 배열의 모든 요소를 검사해 조건을 만족시키면 true를 반환 아니면 false를 반환.
-  if (to.matched.some((recode) => recode.meta.requireAuth)) {
-    // 이 라우트는 인증이 필요하며 로그인 한 경우 확인.
-    // 로그인 페이지로 리디렉션한다.
-    alert("Signin please")
-    next("/signin");
-  } else {
-    next(); // 페이지 전환
-  }
-})
+//   // 콜백함수에 사용자 인증 여부를 체크하는 로직을 추가
+//   // to: 이동할 url에 해당하는 라우팅 객체
+//   // to.matched.some((recode)가 각 레코드를 검사한다. 검사해서 meta.requireAuth가 있는지 확인한다. 
+//   // 인증 값이 필요한 페이지는 라우팅을 막는다.
+//   // .some()은 자바스크립트 내장 API다. 지정된 배열의 모든 요소를 검사해 조건을 만족시키면 true를 반환 아니면 false를 반환.
+//   if (to.matched.some((recode) => recode.meta.requireAuth)) {
+//     // 이 라우트는 인증이 필요하며 로그인 한 경우 확인.
+//     // 로그인 페이지로 리디렉션한다.
+//     alert("Signin please")
+//     next("/signin");
+//   } else {
+//     next(); // 페이지 전환
+//   }
+// })
 
 export default router

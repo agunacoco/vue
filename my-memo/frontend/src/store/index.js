@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { response } from 'express'
 
 Vue.use(Vuex)
 
@@ -34,12 +33,16 @@ export default new Vuex.Store({
         // ?
         getAccessToken(state) {
             state.accessToken = localStorage.getItem('accessToken')
+        },
+        loginFailed(state) {
+            state.accessToken = null;
+            localStorage.removeItem('accessToken')
         }
     },
     actions: {
         signin({ commit }, payload) {
             // payload로 받아온 userid, password를 data에 저장 후 commit으로 mutation으로 보내준다.
-            const data = { userId: payload.userId, password: payload.password }
+            const data = { userid: payload.userId, password: payload.password }
             return axios.post('/api/auth/login', data)
                 .then(response => {
                     // http 200번은 요청이 성공했음을 나타내는 성공 응답 상태 코드.
@@ -48,8 +51,11 @@ export default new Vuex.Store({
                     }
                 })
                 // 에러발생하면 로그아웃
-                .catch(() => {
-                    commit('signout')
+                .catch((error) => {
+                    commit('loginFailed')
+                    return Promise.reject(error)
+                    // 
+
                 })
         }
     }

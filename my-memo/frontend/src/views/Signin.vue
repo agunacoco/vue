@@ -34,19 +34,4 @@ export default {
         });
     },
   },
-  mounted() {
-    const config = {
-      headers: { Authorization: this.$store / state.acessToken },
-    };
-    axios
-      .get("/api/memos", config)
-      .then((res) => {
-        this.memos = res.data;
-        console.log(this.memos);
-      })
-      .catch(() => {
-        this.$store.commit("signout");
-        this.$router.push("/signin");
-      });
-  },
 };

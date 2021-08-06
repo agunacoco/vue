@@ -7,7 +7,7 @@ export default {
             method: 'get'
         })
     },
-    getMemos(memoId) {
+    getMemo(memoId) {
         return sendRequest({
             url: '/api/memos' + memoId,
             method: 'get'
