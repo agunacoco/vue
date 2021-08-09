@@ -1,4 +1,5 @@
 const http = require('http')  // 노드를 설치하면 자동으로 http라는 라이브러리가 제공. 
+// 노드에서 require은 import라고 생각하면 된다.
 // require은 http라는 라이브러리를 
 
 const server = http.createServer((req, res) => { // 웹 서버를 생성.

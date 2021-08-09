@@ -6,21 +6,18 @@
       <p>Cart({{ cart.length }})</p>
     </div>
     <Product @add-to-cart="addToCart"></Product>
-    <Comment></Comment>
   </div>
 </template>
 <script>
 // 자바스크립트 내용
 
 // Product, Comment 컴포넌트를 import해서 ProductPage.vue에 가져왔다.
-import Comment from "./Comment.vue";
 import Product from "./Product.vue";
 
 export default {
   name: "ProductPage",
   components: {
     Product,
-    Comment,
   },
   data() {
     return { cart: [] };

@@ -2,7 +2,7 @@
 import Vue from "vue";
 
 // NumberBaseBall.vue에 있는 export default에 담긴 객체들을 main.js에서 import해서 가져온다.
-import ResponseCheck from './ResponseCheck.vue'; //NumberBaseball.vue가 main.js에 연결된다.
+import NumberBaseBall from './NumberBaseball.vue'; //NumberBaseball.vue가 main.js에 연결된다.
 
-new Vue(ResponseCheck).$mount('#root');  // 뷰 인스턴스를 만든 것. div 태그에 id를 가져오는 el 역할. 
+new Vue(NumberBaseBall).$mount('#root');  // 뷰 인스턴스를 만든 것. div 태그에 id를 가져오는 el 역할. 
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agunacoco</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{ first }}</h1>
+        <form v-on:submit="onClick">
+            <input type="text" v-model="value" ref="value">
+            <button type="submit">입력!</button>
+        </form>
+        <p>{{ result }}</p>
+
+    </div>
+
+</body>
+<script>
+    let app = new Vue({
+        el: '#root',
+        data: {
+            first: '딸기',
+            value: '',
+            result: '',
+        },
+        methods: {
+            onClick(e) {
+                e.preventDefault();
+                if (this.first[this.first.length - 1] === this.value[0]) {
+                    this.result = '성공!'
+                    this.first = this.value;
+                    this.value = ''
+                    this.$ref.value.focus()
+                } else {
+                    this.result = '땡!';
+                    this.value = '';
+                    this.$ref.value.focus();
+                }
+            }
+        },
+    });
+
+</script>
+
+</html>

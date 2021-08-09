@@ -21,6 +21,7 @@
 </body>
 <script> // 스크립트가 여러개 있을 때의 복잡함을 웹팩이 없애준다. 
     Vue.component('Wordrelay', { // Vue.componment라는 메서드.
+        // props를 통해 부모로부터 값을 받아온다.
         props: ['start'],
         template: `
         <div>

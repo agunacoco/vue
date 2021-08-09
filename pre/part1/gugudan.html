@@ -11,39 +11,47 @@
 
 <body>
     <div id="root">
-        <div>{{ first }}곱하기{{ second }}는?</div>
-        <input type="number" v-model="value">
-        <button @click="onClickButton">입력</button>
-        <div>{{ result }}</div>
-    </div>
+        <h1>{{ first }} 곱하기 {{ second }}는?</h1>
+        <form v-on:submit="onClick">
+            <!-- props와 events가 존재하지만 자바스크립트에서 자식 요소에 직접 접근해야 하는 경우에는 ref 속성을 이용해 자식요소에 레퍼런스 ID를 할당해 해결할 수 있다 -->
+            <input type="number" ref="answer" v-model="value">
+            <button type="submit">입력!</button>
+        </form>
 
+        <p>{{ result }}</p>
+
+    </div>
 
 </body>
 <script>
-    const app = new Vue({
+    let app = new Vue({
         el: '#root',
         data: {
             first: Math.ceil(Math.random() * 9),
             second: Math.ceil(Math.random() * 9),
             value: '',
-            result: '',
+            result: ''
         },
         methods: {
-            onClickButton(e) {
+            onClick(e) {
+                // form 안에 submit 역할을 하고 있는 버튼을 눌러도 새로고침이 안된다.
+                e.preventDefault();
                 // parseInt는 문자열을 숫자로 변환한다.
                 if (this.first * this.second === parseInt(this.value)) {
-                    this.result = "정답";
+                    this.result = '정답';
                     this.first = Math.ceil(Math.random() * 9);
                     this.second = Math.ceil(Math.random() * 9);
-                    this.value = null;
-
+                    this.value = '';
+                    // input태그에 포커스가 잡힌다
+                    this.$refs.answer.focus();
                 } else {
-                    this.result = "땡";
-                    this.value = null;
+                    this.result = "땡!";
+                    this.value = '';
                 }
             }
-        }
-    });
+        },
+
+    })
 </script>
 
 </html>

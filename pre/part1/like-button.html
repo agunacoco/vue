@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agunacoco</title>
+    <!-- html에서 vue를 사용하는 법 -->
+    <!-- 뷰를 사용할 수 있다 -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
@@ -15,11 +17,12 @@
         <!-- 데이터만 관리해주면 화면이 알아서 바뀐다. -->
         <div v-if="liked">장재현 좋아요</div>
         <!-- v-가 쓰인 ""안에는 자바스크립트 코드를 쓸 수 있다. -->
-        <button v-else v-on:click="onClickButton()">사랑</button>
+        <button v-else @click="onClickButton()">사랑</button>
     </div>
 
 </body>
 <script>
+    // app을 vue 인스턴스라고 부른다
     let app = new Vue({
         el: '#root',
         data: {

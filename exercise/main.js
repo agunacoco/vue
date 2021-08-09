@@ -12,6 +12,7 @@ Vue.component('product', { // 전역 컴포넌트, 자식 컴포넌트
             <p v-else>Out of Stock</p>
             <ul>
                 <li v-for="ditail in ditails">
+                
                     {{ ditail }}
                 </li>
             </ul>
