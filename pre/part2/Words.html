@@ -13,6 +13,7 @@
     <div id="root">
         <!-- component는 공통된 부분이지만 데이터가 서로 다르다. -->
         <!-- 중복을 제거할 수 있다. -->
+        <!-- 부모는 props를 통해 자식에게 데이터를 전달한다. -->
         <Wordrelay start="초밥"></Wordrelay>
         <Wordrelay start="딸기"></Wordrelay>
         <Wordrelay start="김치"></Wordrelay>
@@ -20,6 +21,8 @@
 
 </body>
 <script> // 스크립트가 여러개 있을 때의 복잡함을 웹팩이 없애준다. 
+    // 컴포넌트가 인스턴스보다는 위에 있어야한다. 
+    // 컴포넌트는 프로그래밍에 있어 재사용이 가능한 각각의 독립된 모듈을 뜻한다.
     Vue.component('Wordrelay', { // Vue.componment라는 메서드.
         // props를 통해 부모로부터 값을 받아온다.
         props: ['start'],

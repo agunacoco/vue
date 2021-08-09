@@ -1,0 +1,6 @@
+1. npm init을 치고 패키지 이름을 설정한다.
+2. npm unstall vue 
+    개발할때나 배포할때 둘 다 사용.
+3. npm install webpack webpack-cli -D 
+    개발할 때만 webpack이랑 webpack-cli를 쓰겠다.
+4. webpack.config.js를 만든다.
