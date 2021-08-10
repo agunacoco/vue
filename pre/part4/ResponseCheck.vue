@@ -36,12 +36,15 @@ export default {
   },
   methods: {
     onReset() {
+      this.message = "클릭해서 시작하세요.";
       this.result = [];
+      this.state = "waiting";
     },
     onClickScreen() {
       if (this.state === "waiting") {
         this.state = "ready";
         this.message = "초록색이 되면 클릭하세요.";
+        // setTimeout(함수, 시간) 함수는 일정 시간 후 함수를 실행한다.
         timeout = setTimeout(() => {
           this.state = "now";
           this.message = "지금 클릭하세요";
@@ -49,9 +52,8 @@ export default {
         }, Math.floor(Math.random() * 1000) + 2000); // 2~3초
       } else if (this.state === "ready") {
         // 화면이 빨간색인데 눌렀을 때
-
         clearTimeout(timeout); // 성급하게 눌렀을 때는 기존의 timeout 값을 삭제해준다.
-        this.state = "now";
+        this.state = "waiting";
         this.message = "너무 성급하시군요! 초록색이 된 후에 클릭하세요.";
       } else if (this.state === "now") {
         endTime = new Date(); // 초록색 버튼을 누른 현재 시간.
@@ -63,9 +65,13 @@ export default {
   },
   computed: {
     // 데이터를 계산해야하는 부분이 있다면 computed에 넣는 것이 좋다.
-    // 캐싱이 된다
+    // 캐싱이 된다.
+    // 일반 데이터를 가공해서 쓸 때 computed를 쓴다.
     average() {
-      return this.result.reduce((a, c) => a + c, 0) / this.result.length;
+      // reduce의 (a, c)는 accumulator 누산기이고 currentValue로 처리할 현재 요소다.
+      // 누산기는 c 현재 값을 누적한다.
+      // 그리고 두번째 인자 0은 그냥 더할 숫자다.
+      return this.result.reduce((a, c) => a + c, 0) / this.result.length || 0;
     },
   },
 };

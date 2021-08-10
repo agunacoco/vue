@@ -3,6 +3,7 @@
   <!-- component를 만든 것. -->
   <div>
     <h1>{{ result }}</h1>
+    <!-- e.preventDefault()대신에 prevent로 바꿀 수 있다. -->
     <!-- v-on:submit는 <form>이 제출될 때 실행.  -->
     <!-- 이벤트가 해야하는 작업을 방지. 원래 form에서 submit가 발생하면 페이지를 다시 불러오게 된다. 그렇게 되면 현재 지니고 있는 상태를 다 잃어버리기 때문에 방지해줌. -->
     <form @submit.prevent="onSubButton">
@@ -30,6 +31,8 @@ const getNumbers = () => {
   const candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const array = [];
   for (let i = 0; i < 4; i += 1) {
+    // math.floor함수는 소수점을 내린다.
+    // splice함수는 첫번째 인자의 값에서 두번째 인자의 값만큼 제거. 제거한 요소를 담은 배열.
     const chosen = candidates.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
     array.push(chosen);
   }
@@ -79,6 +82,11 @@ export default {
         // 언제 data로 쓰고 변수로 쓰는지 잘 모르겠다면 화면에 보여지는 것을 data로 넣고 계산식으로 쓰이고 화면과는 관련이 없다면 변수로 쓰인다.
         let strike = 0;
         let ball = 0;
+        // split는 문자열객체를 지정한 구분자를 이용해 여러 개의 문자열로 나눈다.
+        // parseInt는 정수로 반환.
+        // map()메서드는 배열 내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환.
+        // input에 입력한 값을 value에 저장한 뒤 split로 그 문자열을 하나하나 나눈다. 예) '1', '3', '4', '7'
+        // 그리고 map을 이용해 문자열로 입력된 숫자를 parseInt를 이용해 숫자형으로 바꾼다.
         const answerArray = this.value.split("").map((v) => parseInt(v)); // 문자열을 숫자 배열로 바꾸는 코드.
         for (let i = 0; i < 4; i += 1) {
           if (answerArray[i] === this.answer[i]) {
