@@ -16,6 +16,7 @@
     </form>
     <div>시도: {{ tries.length }}</div>
     <ul>
+      <!-- key값은 li 태그 각각의 이름이라고 생각하자 구별해줄때 붙이는게 키값. -->
       <!-- v가 앞에 붙으면 vue가 통제하는 속성 -->
       <li v-for="(t, index) in tries" :key="index">
         <div>{{ t.try }}</div>
