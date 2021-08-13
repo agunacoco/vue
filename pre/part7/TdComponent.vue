@@ -10,6 +10,9 @@ export default {
   },
   methods: {
     onClickTd() {
+      // 이미 값이 있는 칸을 한번더 누르면 return해서 함수 중단해버리기.
+      if (this.cellData) return;
+
       let rootData = this.$root.$data;
       // 최상위 파일의 tableData의 현재 몇번째 줄의 몇번째 칸에 접근해서 현재 턴을 넣은다.
       // 배열이나 객체의 값을 인덱스를 사용해서 값을 바꾸면 실제로 값을 바뀌지만 보여주는 화면상은 바뀌지 않는다.
@@ -28,9 +31,9 @@ export default {
         win = true;
       }
       if (
-        rootData.tableData[0][this.cellData] === rootData.turn &&
-        rootData.tableData[1][this.cellData] === rootData.turn &&
-        rootData.tableData[2][this.cellData] === rootData.turn
+        rootData.tableData[0][this.cellIndex] === rootData.turn &&
+        rootData.tableData[1][this.cellIndex] === rootData.turn &&
+        rootData.tableData[2][this.cellIndex] === rootData.turn
       ) {
         win = true;
       }
