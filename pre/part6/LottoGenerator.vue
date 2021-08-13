@@ -23,9 +23,11 @@ function getWinNumbers() {
   // fill은 배열의 시작 인덱스부터 끝 인덱스까지 하나의 값으로 채워주는 메서드다. 원본 배열을 직접 변경, 리턴 값은 변형된 배열이다.
   // 반복을 하며 데이터를 가공해 작업을 수행해야할 때 for문 foreach문도 있지만 map()도 있다.
   // map()은 시작 인덱스부터 마지막 인덱스까지 순회하며 배열 내의 모든 요소 각각에 대해서 주어진 함수를 호출한 결과를 모아 새로운 배열을 반환.
+  // map()함수는 모든 배열의 값에 function를 실행한다.
   const candidate = Array(45)
     .fill()
     .map((v, i) => i + 1);
+
   const shuffle = [];
   // for문은 자신이 정확하게 몇번을 반복해야하는지 알 때. while문은 잘모를때, 기준 값이 계속 바뀔때.
   while (candidate.length > 0) {
