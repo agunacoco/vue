@@ -17,6 +17,7 @@ export default {
       // 최상위 파일의 tableData의 현재 몇번째 줄의 몇번째 칸에 접근해서 현재 턴을 넣은다.
       // 배열이나 객체의 값을 인덱스를 사용해서 값을 바꾸면 실제로 값을 바뀌지만 보여주는 화면상은 바뀌지 않는다.
       // 배열에서 인덱스를 사용할 때는 반드시 Vue.set을 사용해준다.
+      // Vue.set(object, key, value)
       this.$set(
         rootData.tableData[this.rowIndex],
         this.cellIndex,
