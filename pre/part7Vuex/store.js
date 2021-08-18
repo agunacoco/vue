@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// vuex를 사용하려면 vue에 연결을 시켜야한다.
+Vue.use(Vuex);
+
 // mutation 함수의 이름을 변수로 설정할 수 있다.
 // 앞에 export가 붙으면 모듈이 되는데 다른 파일에서도 사용가능하다.
 export const SET_WINNER = 'SET_WINNER';
@@ -7,6 +10,7 @@ export const CLICK_CELL = 'CLICK_CELL';
 export const CHANGE_TURN = 'CHANGE_TURN';
 export const RESET_GAME = 'RESET_GAME';
 export const NO_WINNER = 'NO_WINNER';
+
 
 export default new Vuex.Store({
     state: {  // vue의 data와 비슷

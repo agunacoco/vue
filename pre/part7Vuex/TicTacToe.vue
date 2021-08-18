@@ -6,10 +6,11 @@
   </div>
 </template>
 <script>
+import store from "./store";
 import TableComponent from "./TableComponent.vue";
-import EventBus from "./EventBus";
 
 export default {
+  store,
   components: {
     TableComponent,
   },

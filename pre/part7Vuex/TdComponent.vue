@@ -2,7 +2,13 @@
   <td @click="onClickTd">{{ cellData }}</td>
 </template>
 <script>
-import { CLICK_CELL } from "./store";
+import {
+  CLICK_CELL,
+  SET_WINNER,
+  CHANGE_TURN,
+  RESET_GAME,
+  NO_WINNER,
+} from "./store";
 
 export default {
   props: {
@@ -10,12 +16,25 @@ export default {
     rowIndex: Number,
     cellIndex: Number,
   },
+  computed: {
+    // vuex의 state는 computed로 가져온다.
+    tableData() {
+      return this.$store.state.tableData;
+    },
+    turn() {
+      return this.$store.state.turn;
+    },
+  },
   methods: {
     onClickTd() {
       // 이미 값이 있는 칸을 한번더 누르면 return해서 함수 중단해버리기.
       if (this.cellData) return;
       // mutation을 부를 때는 commit으로 부른다. mutation 이름이 CLICK_CELL인게 실행된다.
-      this.$store.commit(CLICK_CELL);
+      // 첫번째 인수에는 mutation의 이름을 입력하고, 두번째 인수에는 데이터 입력한다.
+      this.$store.commit(CLICK_CELL, {
+        row: this.rowIndex,
+        cell: this.cellIndex,
+      });
 
       let win = false;
       if (
@@ -48,13 +67,8 @@ export default {
       }
       if (win) {
         // 이긴 경우
-        this.winner = this.turn;
-        this.turn = "O";
-        this.tableData = [
-          ["", "", ""],
-          ["", "", ""],
-          ["", "", ""],
-        ];
+        this.$store.commit(SET_WINNER, this.turn);
+        this.$store.commit(RESET_GAME);
       } else {
         let all = true; // all이 true면 무승부라는 뜻
         this.tableData.forEach((row) => {
@@ -67,17 +81,12 @@ export default {
         });
         if (all) {
           // 무승부
-          this.winner = "";
-          this.turn = "O";
-          this.tableData = [
-            ["", "", ""],
-            ["", "", ""],
-            ["", "", ""],
-          ];
+          this.$store.commit(NO_WINNER);
+          this.$store.commit(RESET_GAME);
         } else {
           // this.$root.$data는 최상위 파일의 데이터에 접근할 수 있다.
           // 부모의 데이터로 접근하려면 this.$parent.$data
-          this.turn = this.turn === "O" ? "X" : "O";
+          this.$store.commit(CHANGE_TURN);
         }
       }
     },
