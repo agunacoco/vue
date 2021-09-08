@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
 
 <head>
-    <title>Agunacoco</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Hello</title>
+
 </head>
 
 <body>
     <div id="app">
-        <agunacoco></agunacoco>
-        <script src="./test.js"></script>
+        <h3>{{ totalCount }}</h3>
+        <add @event-add="updated"></add><br>
+        <add @event-add="updated"></add><br>
+        <add @event-add="updated"></add><br>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./test.js"></script>
 </body>
 
 </html>
